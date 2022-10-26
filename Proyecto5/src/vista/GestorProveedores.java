@@ -144,8 +144,15 @@ public class GestorProveedores extends javax.swing.JFrame {
     
     public void defineProveedor(String consulta) {
         prov = ScrollingDemo.login(consulta);
-        if (prov == null)
+        if (prov == null){
             panelUsuario.setVisible(false);
+        }else{
+            jMenuItemCerrar.setEnabled(true);
+            jMenuItemAbrir.setEnabled(false);
+            jMenuVisualizar.setEnabled(true);
+            jMenuAcercaDe.setEnabled(true);
+        }
+            
             
         
     }

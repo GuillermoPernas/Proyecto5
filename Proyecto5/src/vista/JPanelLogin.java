@@ -115,6 +115,7 @@ public class JPanelLogin extends javax.swing.JPanel {
         //defineProveedor(consulta);
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
