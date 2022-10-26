@@ -4,12 +4,17 @@
  */
 package vista;
 
+import controlador.ScrollingDemo;
+import modelo.Proveedor;
+
 /**
  *
  * @author Pernas
  */
 public class GestorProveedores extends javax.swing.JFrame {
 
+    private Proveedor prov = null;
+    JPanelLogin panelUsuario = null;
     /**
      * Creates new form GestorProveedores
      */
@@ -40,6 +45,11 @@ public class GestorProveedores extends javax.swing.JFrame {
         jMenuConexion.setText("Conexion");
 
         jMenuItemAbrir.setText("Abrir");
+        jMenuItemAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAbrirActionPerformed(evt);
+            }
+        });
         jMenuConexion.add(jMenuItemAbrir);
 
         jMenuItemCerrar.setText("Cerrar");
@@ -75,6 +85,12 @@ public class GestorProveedores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirActionPerformed
+        if(panelUsuario == null)
+            panelUsuario = new JPanelLogin();
+        setContentPane(panelUsuario);
+    }//GEN-LAST:event_jMenuItemAbrirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,4 +137,16 @@ public class GestorProveedores extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemResumen;
     private javax.swing.JMenu jMenuVisualizar;
     // End of variables declaration//GEN-END:variables
+
+    public void recogeDatosLogin() {
+        prov = ScrollingDemo.login("select * from proveedor where usuario='"   + "' and contrasena='"   + "'");
+    }
+    
+    public void defineProveedor(String consulta) {
+        prov = ScrollingDemo.login(consulta);
+        if (prov == null)
+            panelUsuario.setVisible(false);
+            
+        
+    }
 }
