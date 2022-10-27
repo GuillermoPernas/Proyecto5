@@ -18,9 +18,9 @@ CREATE TABLE PRODUCTO (
 );
 
 /*VALORES DE LOS PROVEEDORES*/
-INSERT INTO PROVEEDOR VALUES (001,'Proveedor1', 'prov1', 0, '1011.jpg');
-INSERT INTO PROVEEDOR VALUES (002,'Proveedor2', 'prov2', 0, '1018.jpg');
-INSERT INTO PROVEEDOR VALUES (003,'Proveedor3', 'prov3', 0, 'default.jpg');
+INSERT INTO PROVEEDOR VALUES (001,'prov1', 'prov1', 0, '1011.jpg');
+INSERT INTO PROVEEDOR VALUES (002,'prov2', 'prov2', 0, '1018.jpg');
+INSERT INTO PROVEEDOR VALUES (003,'prov3', 'prov3', 0, 'default.jpg');
 
 
 

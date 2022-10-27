@@ -4,17 +4,32 @@
  */
 package vista;
 
+import controlador.LoginController;
+import controlador.Productos1a1;
+import modelo.Proveedor;
+import javax.swing.*;
+
 /**
  *
  * @author Pernas
  */
 public class JPanelLogin extends javax.swing.JPanel {
-
     /**
      * Creates new form JPanelLogin
      */
-    public JPanelLogin() {
+    
+    private JMenu ac;
+    private JMenuItem ab;
+    private JMenuItem ce;
+    private JMenu vi;
+    
+    public JPanelLogin(JMenuItem ce, JMenuItem ab, JMenu vi, JMenu ac) {
         initComponents();
+        this.ac = ac;
+        this.ab = ab;
+        this.ce = ce;
+        this.vi = vi;
+        
     }
 
     /**
@@ -112,10 +127,20 @@ public class JPanelLogin extends javax.swing.JPanel {
         user = jTextFieldUsuario.getText();
         pass = jTextFieldPassword.getText();
         String consulta = "select * from proveedor where usuario='" + user + "' and contrasena='" + pass + "'";
-        //defineProveedor(consulta);
+        LoginController.loginGetProveedor(consulta);
+        if(LoginController.getAuxProd() != null)
+        {
+            this.setVisible(false);
+            habilitaMenu();
+        }
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
-    
+    public void habilitaMenu() {
+        ce.setEnabled(true);
+        ab.setEnabled(false);
+        vi.setEnabled(true);
+        ac.setEnabled(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

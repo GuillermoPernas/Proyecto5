@@ -4,7 +4,9 @@
  */
 package vista;
 
-import controlador.ScrollingDemo;
+import controlador.ConnectionFactory;
+import javax.swing.JDialog;
+import static javax.swing.JOptionPane.showMessageDialog;
 import modelo.Proveedor;
 
 /**
@@ -20,6 +22,10 @@ public class GestorProveedores extends javax.swing.JFrame {
      */
     public GestorProveedores() {
         initComponents();
+        
+        jMenuItemCerrar.setEnabled(false);
+        jMenuVisualizar.setEnabled(false);
+        jMenuAcercaDe.setEnabled(false);
     }
 
     /**
@@ -53,6 +59,11 @@ public class GestorProveedores extends javax.swing.JFrame {
         jMenuConexion.add(jMenuItemAbrir);
 
         jMenuItemCerrar.setText("Cerrar");
+        jMenuItemCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCerrarActionPerformed(evt);
+            }
+        });
         jMenuConexion.add(jMenuItemCerrar);
 
         jMenuBar1.add(jMenuConexion);
@@ -68,6 +79,11 @@ public class GestorProveedores extends javax.swing.JFrame {
         jMenuBar1.add(jMenuVisualizar);
 
         jMenuAcercaDe.setText("Acerca de...");
+        jMenuAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuAcercaDeMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuAcercaDe);
 
         setJMenuBar(jMenuBar1);
@@ -87,11 +103,30 @@ public class GestorProveedores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAbrirActionPerformed
-        if(panelUsuario == null)
-            panelUsuario = new JPanelLogin();
+        if(panelUsuario == null){
+            panelUsuario = new JPanelLogin(jMenuItemCerrar, jMenuItemAbrir, jMenuVisualizar, jMenuAcercaDe);
+        }
+        ConnectionFactory.abrirConexion();
+        panelUsuario.setVisible(true);
         setContentPane(panelUsuario);
     }//GEN-LAST:event_jMenuItemAbrirActionPerformed
 
+    private void jMenuItemCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCerrarActionPerformed
+        ConnectionFactory.close();
+        deshabilitaMenu();
+    }//GEN-LAST:event_jMenuItemCerrarActionPerformed
+
+    private void jMenuAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAcercaDeMouseClicked
+//        JDialog stest = new JDialog();
+//        stest.setTitle("Acerca de...");
+//        stest.setVisible(true);
+//        stest.setSize(300, 300);
+//        stest.setLocation(800, 40);
+//        stest.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        showMessageDialog(null, "AUTORES:\n Inmaculada Rueda \n Guillermo Pernas \n\n Fecha: 28/10/2022");
+    }//GEN-LAST:event_jMenuAcercaDeMouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -138,22 +173,11 @@ public class GestorProveedores extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuVisualizar;
     // End of variables declaration//GEN-END:variables
 
-    public void recogeDatosLogin() {
-        prov = ScrollingDemo.login("select * from proveedor where usuario='"   + "' and contrasena='"   + "'");
-    }
     
-    public void defineProveedor(String consulta) {
-        prov = ScrollingDemo.login(consulta);
-        if (prov == null){
-            panelUsuario.setVisible(false);
-        }else{
-            jMenuItemCerrar.setEnabled(true);
-            jMenuItemAbrir.setEnabled(false);
-            jMenuVisualizar.setEnabled(true);
-            jMenuAcercaDe.setEnabled(true);
-        }
-            
-            
-        
+    public void deshabilitaMenu() {
+        jMenuItemCerrar.setEnabled(false);
+        jMenuItemAbrir.setEnabled(true);
+        jMenuVisualizar.setEnabled(false);
+        jMenuAcercaDe.setEnabled(false);
     }
 }

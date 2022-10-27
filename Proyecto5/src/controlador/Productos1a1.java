@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.*;
 
-public class ScrollingDemo {
+public class Productos1a1 {
     
     private static Statement stmt = null;
     private static ResultSet rset = null;
@@ -48,8 +48,8 @@ public class ScrollingDemo {
             pv = new Proveedor(rset.getInt(1),
                     rset.getString(2),
                     rset.getString(3),
-                    rset.getString(4),
-                    rset.getFloat(5));
+                    rset.getFloat(4),
+                    rset.getString(5));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha habido un problema al extraer el proveedor");
         }
@@ -57,34 +57,12 @@ public class ScrollingDemo {
         return pv;
     }
     
-    // Arraylist
-    /*
-    public ArrayList listaApellido()
-    {
-        ArrayList<String> listaApellido = new ArrayList<String>();
-        try {
-        System.out.println(rset.getObject(1).toString());
-            rset.first();
-            listaApellido.add(rset.getString(1));
-            
-            while (rset.next()) {
-                listaApellido.add(rset.getString(1));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ScrollingDemo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        cerrarStmtyRset();
-
-        return listaApellido;
-    }*/
-    
-    
     public boolean siguienteEmpleado()
     {
         try {
             return rset.next();
         } catch (SQLException ex) {
-            Logger.getLogger(ScrollingDemo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -94,7 +72,7 @@ public class ScrollingDemo {
         try {
             return rset.previous();
         } catch (SQLException ex) {
-            Logger.getLogger(ScrollingDemo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -105,7 +83,7 @@ public class ScrollingDemo {
             if(rset.isFirst())
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ScrollingDemo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -116,7 +94,7 @@ public class ScrollingDemo {
             if(rset.isLast())
                 return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ScrollingDemo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -126,7 +104,7 @@ public class ScrollingDemo {
             rset.close();
             stmt.close();
         } catch (SQLException ex) {
-            Logger.getLogger(ScrollingDemo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

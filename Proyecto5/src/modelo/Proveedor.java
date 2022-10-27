@@ -7,7 +7,7 @@ public class Proveedor {
     private String foto;
     private float precioMedio;
 
-    public Proveedor(int codProv, String nombre, String password, String foto, float precioMedio) {
+    public Proveedor(int codProv, String nombre, String password, float precioMedio, String foto) {
         this.codProv = codProv;
         this.nombre = nombre;
         this.password = password;
