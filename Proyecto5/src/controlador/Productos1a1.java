@@ -24,6 +24,18 @@ public class Productos1a1 {
         }
     }
     
+    public static void ejecutaUpdate(String consulta){
+        try {
+            int filas;
+            stmt = ConnectionFactory.getConexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                  ResultSet.CONCUR_READ_ONLY);
+            filas = stmt.executeUpdate(consulta);
+            JOptionPane.showMessageDialog(null, "Se han actualizado " + filas + " fila(s)");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
     public static Producto devolverProducto() {
         Producto pv = null;
         try {
