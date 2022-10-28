@@ -4,6 +4,10 @@
  */
 package vista;
 
+import controlador.LoginController;
+import controlador.Productos1a1;
+import modelo.Producto;
+
 /**
  *
  * @author Pernas
@@ -15,6 +19,10 @@ public class JPanelDetalle extends javax.swing.JPanel {
      */
     public JPanelDetalle() {
         initComponents();
+        
+        iniciaConsulta();
+        iniciaPanel();
+        
     }
 
     /**
@@ -26,19 +34,159 @@ public class JPanelDetalle extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelCodigo = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelPrecio = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
+        jTextFieldCodigo = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldPrecio = new javax.swing.JTextField();
+        jButtonAnterior = new javax.swing.JButton();
+        jButtonSiguiente = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jDateChooserFecha = new com.toedter.calendar.JDateChooser();
+
+        jLabelCodigo.setText("Codigo");
+
+        jLabelNombre.setText("Nombre");
+
+        jLabelPrecio.setText("Precio");
+
+        jLabelFecha.setText("Fecha");
+
+        jButtonAnterior.setText("Anterior");
+        jButtonAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnteriorActionPerformed(evt);
+            }
+        });
+
+        jButtonSiguiente.setText("Siguiente");
+        jButtonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSiguienteActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardar.setText("Guardar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelCodigo)
+                            .addComponent(jLabelFecha)
+                            .addComponent(jLabelPrecio)
+                            .addComponent(jLabelNombre))
+                        .addGap(122, 122, 122)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldCodigo)
+                            .addComponent(jTextFieldNombre)
+                            .addComponent(jTextFieldPrecio)
+                            .addComponent(jDateChooserFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(jButtonGuardar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jButtonAnterior)
+                        .addGap(86, 86, 86)
+                        .addComponent(jButtonSiguiente)))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelCodigo)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelNombre)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelPrecio))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabelFecha))
+                    .addComponent(jDateChooserFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(jButtonGuardar)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAnterior)
+                    .addComponent(jButtonSiguiente))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnteriorActionPerformed
+        Productos1a1.anteriorProducto();
+        compruebaBotones();
+        mostrarProducto(Productos1a1.devolverProducto());
+    }//GEN-LAST:event_jButtonAnteriorActionPerformed
+
+    private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
+        Productos1a1.siguienteProducto();
+        compruebaBotones();
+        mostrarProducto(Productos1a1.devolverProducto());
+    }//GEN-LAST:event_jButtonSiguienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAnterior;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonSiguiente;
+    private com.toedter.calendar.JDateChooser jDateChooserFecha;
+    private javax.swing.JLabel jLabelCodigo;
+    private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelPrecio;
+    private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldPrecio;
     // End of variables declaration//GEN-END:variables
+
+    private void compruebaBotones() {
+        if(Productos1a1.esPrimero())
+            jButtonAnterior.setEnabled(false);
+        else
+            jButtonAnterior.setEnabled(true);
+        
+        if(Productos1a1.esUltimo())
+            jButtonSiguiente.setEnabled(false);
+        else
+            jButtonSiguiente.setEnabled(true);
+    }
+
+    private void mostrarProducto(Producto prod) {
+        jTextFieldCodigo.setText(prod.getCodProd()+"");
+        jTextFieldNombre.setText(prod.getNombre());
+        jTextFieldPrecio.setText(prod.getPrecio()+"");
+        jDateChooserFecha.setDate(prod.getFecha());
+    }
+
+    private void iniciaConsulta() {
+        int cod = LoginController.getAuxProd().getCodProv();
+        String consulta = "select * from producto where cod_prov = " + cod;
+        Productos1a1.crearConsulta(consulta);
+    }
+
+    private void iniciaPanel() {
+        compruebaBotones();
+        mostrarProducto(Productos1a1.devolverProducto());
+        jTextFieldCodigo.setEditable(false);
+        jTextFieldNombre.setEditable(false);
+    }
 }

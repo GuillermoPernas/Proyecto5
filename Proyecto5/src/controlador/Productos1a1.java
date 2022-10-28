@@ -11,24 +11,6 @@ public class Productos1a1 {
     private static Statement stmt = null;
     private static ResultSet rset = null;
         
-    public static Proveedor login(String consulta){
-        try {
-            ConnectionFactory.abrirConexion();
-            stmt = ConnectionFactory.getConexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                  ResultSet.CONCUR_READ_ONLY);
-            rset = stmt.executeQuery(consulta);
-            if (!rset.first()) {
-                JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctos");
-                return null;
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error con la consulta");
-            
-        }
-        return devolverProveedor();
-    }
-    
     public static void crearConsulta(String consulta){
         try {
             stmt = ConnectionFactory.getConexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
@@ -42,14 +24,14 @@ public class Productos1a1 {
         }
     }
     
-    public static Proveedor devolverProveedor() {
-        Proveedor pv = null;
+    public static Producto devolverProducto() {
+        Producto pv = null;
         try {
-            pv = new Proveedor(rset.getInt(1),
+            pv = new Producto(rset.getInt(1),
                     rset.getString(2),
-                    rset.getString(3),
-                    rset.getFloat(4),
-                    rset.getString(5));
+                    rset.getFloat(3),
+                    rset.getDate(4),
+                    rset.getInt(5));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha habido un problema al extraer el proveedor");
         }
@@ -57,7 +39,7 @@ public class Productos1a1 {
         return pv;
     }
     
-    public boolean siguienteEmpleado()
+    public static boolean siguienteProducto()
     {
         try {
             return rset.next();
@@ -67,7 +49,7 @@ public class Productos1a1 {
         return false;
     }
     
-    public boolean anteriorEmpleado()
+    public static boolean anteriorProducto()
     {
         try {
             return rset.previous();
@@ -77,29 +59,27 @@ public class Productos1a1 {
         return false;
     }
     
-    public boolean esPrimero()
+    public static boolean esPrimero()
     {
         try {
-            if(rset.isFirst())
-                return true;
+            return rset.isFirst();
         } catch (SQLException ex) {
             Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
     
-    public boolean esUltimo()
+    public static boolean esUltimo()
     {
         try {
-            if(rset.isLast())
-                return true;
+            return rset.isLast();
         } catch (SQLException ex) {
             Logger.getLogger(Productos1a1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
     
-    public void cerrarStmtyRset() {
+    public static void cerrarStmtyRset() {
         try {
             rset.close();
             stmt.close();
