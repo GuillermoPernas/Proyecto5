@@ -17,6 +17,8 @@ public class GestorProveedores extends javax.swing.JFrame {
 
     private Proveedor prov = null;
     JPanelLogin panelUsuario = null;
+    JPanelDetalle panelDetalle = null;
+    JPanelResumen panelResumen = null;
     /**
      * Creates new form GestorProveedores
      */
@@ -71,9 +73,19 @@ public class GestorProveedores extends javax.swing.JFrame {
         jMenuVisualizar.setText("Visualizar");
 
         jMenuItemDetalle.setText("Detalle");
+        jMenuItemDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDetalleActionPerformed(evt);
+            }
+        });
         jMenuVisualizar.add(jMenuItemDetalle);
 
         jMenuItemResumen.setText("Resumen");
+        jMenuItemResumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemResumenActionPerformed(evt);
+            }
+        });
         jMenuVisualizar.add(jMenuItemResumen);
 
         jMenuBar1.add(jMenuVisualizar);
@@ -125,6 +137,24 @@ public class GestorProveedores extends javax.swing.JFrame {
 //        stest.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         showMessageDialog(null, "AUTORES:\n Inmaculada Rueda \n Guillermo Pernas \n\n Fecha: 28/10/2022");
     }//GEN-LAST:event_jMenuAcercaDeMouseClicked
+
+    private void jMenuItemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDetalleActionPerformed
+        if(panelDetalle == null){
+            panelDetalle = new JPanelDetalle();
+        }
+        ConnectionFactory.abrirConexion();
+        panelDetalle.setVisible(true);
+        setContentPane(panelDetalle);
+    }//GEN-LAST:event_jMenuItemDetalleActionPerformed
+
+    private void jMenuItemResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResumenActionPerformed
+        if(panelResumen == null){
+            panelResumen = new JPanelResumen();
+        }
+        ConnectionFactory.abrirConexion();
+        panelResumen.setVisible(true);
+        setContentPane(panelResumen);
+    }//GEN-LAST:event_jMenuItemResumenActionPerformed
 
     
     /**
