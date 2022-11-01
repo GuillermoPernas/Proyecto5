@@ -27,10 +27,12 @@ public class Productos1a1 {
     public static void ejecutaUpdate(String consulta){
         try {
             int filas;
-            stmt = ConnectionFactory.getConexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                  ResultSet.CONCUR_READ_ONLY);
-            filas = stmt.executeUpdate(consulta);
+            PreparedStatement pstment = ConnectionFactory.getConexion().prepareStatement(consulta);
+                    //ConnectionFactory.getConexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                  //ResultSet.CONCUR_READ_ONLY);
+            filas = pstment.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se han actualizado " + filas + " fila(s)");
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }

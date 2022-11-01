@@ -4,17 +4,26 @@
  */
 package vista;
 
+import Controlador.ListaProductos;
+import controlador.LoginController;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import modelo.Producto;
+
 /**
  *
  * @author Pernas
  */
 public class JPanelResumen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form JPanelResumen
-     */
+    float precio = 0;
+
     public JPanelResumen() {
         initComponents();
+        rellenarDatosProveedor();
+        rellenarJlist();
+
     }
 
     /**
@@ -26,19 +35,130 @@ public class JPanelResumen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lbUsuario = new javax.swing.JLabel();
+        lbCodigo = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListProductos = new javax.swing.JList<>();
+        btCalcular = new javax.swing.JButton();
+        txtPrecioMedio = new javax.swing.JTextField();
+        lbFoto = new javax.swing.JLabel();
+
+        lbUsuario.setText("Usuario:");
+
+        lbCodigo.setText("Código:");
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(jListProductos);
+
+        btCalcular.setText("Calcular Precio Medio");
+        btCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCalcularActionPerformed(evt);
+            }
+        });
+
+        lbFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotos/1001.jpg"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(btCalcular)
+                .addGap(49, 49, 49)
+                .addComponent(txtPrecioMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbCodigo))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(txtCodigo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(52, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbUsuario)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbCodigo)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lbFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCalcular)
+                    .addComponent(txtPrecioMedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void rellenarDatosProveedor() {
+        txtUsuario.setText(LoginController.getAuxProv().getNombre());
+        txtCodigo.setText(LoginController.getAuxProv().getPassword());
+        lbFoto.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\fotos\\"+LoginController.getAuxProv().getFoto()));
+        //txtFoto.setText(LoginController.getAuxProv().getFoto());
+
+    }
+
+    public void rellenarJlist() {
+        ArrayList<Producto> listaProductos = (ArrayList<Producto>) ListaProductos.getLista("select * from producto where cod_prov="
+                + LoginController.getAuxProv().getCodProv());
+        float precioAux = 0;
+        DefaultListModel model = new DefaultListModel();
+
+        for (int i = 0; i < listaProductos.size(); i++) {
+            precioAux += listaProductos.get(i).getPrecio();
+            model.addElement(listaProductos.get(i).listToString());
+        }
+        precio = precioAux / listaProductos.size();
+        this.jListProductos.setModel(model);
+    }
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
+        txtPrecioMedio.setText(String.valueOf(precio));
+    }//GEN-LAST:event_btCalcularActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCalcular;
+    private javax.swing.JList<String> jListProductos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbCodigo;
+    private javax.swing.JLabel lbFoto;
+    private javax.swing.JLabel lbUsuario;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtPrecioMedio;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

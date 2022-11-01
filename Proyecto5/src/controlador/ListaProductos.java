@@ -10,6 +10,7 @@ package Controlador;
 import modelo.Producto;
 import java.sql.*;
 import java.util.ArrayList;
+import controlador.ConnectionFactory;
 
 public class ListaProductos {
     
@@ -20,6 +21,7 @@ public class ListaProductos {
     public static ArrayList getLista(String query){
         ArrayList<Producto> lista = new ArrayList<>();
         Connection con = null;
+        
         try{
             con = ConnectionFactory.getConexion();
             st = con.createStatement();

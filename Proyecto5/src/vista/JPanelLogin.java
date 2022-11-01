@@ -128,7 +128,7 @@ public class JPanelLogin extends javax.swing.JPanel {
         pass = jTextFieldPassword.getText();
         String consulta = "select * from proveedor where usuario='" + user + "' and contrasena='" + pass + "'";
         LoginController.loginGetProveedor(consulta);
-        if(LoginController.getAuxProd() != null)
+        if(LoginController.getAuxProv() != null)
         {
             this.setVisible(false);
             habilitaMenu();

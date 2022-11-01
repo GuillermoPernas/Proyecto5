@@ -66,4 +66,8 @@ public class Producto {
                 + ", fecha=" + fecha 
                 + ", codProv=" + codProv + '}';
     }
+    
+    public String listToString() {
+        return codProd + "---"+ nombre + "---" + precio ;
+    }
 }

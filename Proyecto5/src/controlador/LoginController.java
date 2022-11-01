@@ -16,7 +16,7 @@ public class LoginController {
         
     private static Statement st = null;
     private static ResultSet rs = null;
-    private static Proveedor auxProd = null;
+    private static Proveedor auxProv = null;
     
     public static void loginGetProveedor(String query){
         int cont = 0;
@@ -25,7 +25,7 @@ public class LoginController {
             rs = st.executeQuery(query);
             
             while(rs.next()){
-                auxProd = new Proveedor( rs.getInt(1),
+                auxProv = new Proveedor( rs.getInt(1),
                                         rs.getString(2),
                                         rs.getString(3),
                                         rs.getFloat(4),
@@ -39,13 +39,13 @@ public class LoginController {
             System.out.println("Error consulta proveedor login");
         }
         if (cont != 1) {
-            auxProd = null;
+            auxProv = null;
             showMessageDialog(null, "No se ha devuelto usuario o se ha devuelto mas de uno con esas credenciales");
         }
     }
 
-    public static Proveedor getAuxProd() {
-        return auxProd;
+    public static Proveedor getAuxProv() {
+        return auxProv;
     }
     
     

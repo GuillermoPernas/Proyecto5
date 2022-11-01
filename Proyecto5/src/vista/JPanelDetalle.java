@@ -158,6 +158,7 @@ public class JPanelDetalle extends javax.swing.JPanel {
                 + Integer.parseInt(jTextFieldCodigo.getText());
         
         Productos1a1.ejecutaUpdate(consulta);
+        iniciaConsulta();
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
 
@@ -195,7 +196,7 @@ public class JPanelDetalle extends javax.swing.JPanel {
     }
 
     private void iniciaConsulta() {
-        int cod = LoginController.getAuxProd().getCodProv();
+        int cod = LoginController.getAuxProv().getCodProv();
         String consulta = "select * from producto where cod_prov = " + cod;
         Productos1a1.crearConsulta(consulta);
     }
