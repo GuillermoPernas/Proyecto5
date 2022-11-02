@@ -5,7 +5,11 @@
 package vista;
 
 import controlador.ConnectionFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.plaf.basic.BasicArrowButton;
 import modelo.Proveedor;
 
 /**
@@ -24,6 +28,7 @@ public class GestorProveedores extends javax.swing.JFrame {
     public GestorProveedores() {
         initComponents();
         
+        setLocationRelativeTo(null);
         jMenuItemCerrar.setEnabled(false);
         jMenuVisualizar.setEnabled(false);
         jMenuAcercaDe.setEnabled(false);
@@ -131,14 +136,17 @@ public class GestorProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCerrarActionPerformed
 
     private void jMenuAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuAcercaDeMouseClicked
-//        JDialog stest = new JDialog();
-//        stest.setTitle("Acerca de...");
-//        stest.setVisible(true);
-//        stest.setSize(300, 300);
-//        stest.setLocation(800, 40);
-//        stest.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        showMessageDialog(null, "AUTORES:\n Inmaculada Rueda \n Guillermo Pernas \n\n Fecha: 28/10/2022");
-        pack();
+        AcercaDe dialogoAcercaDe = new AcercaDe(this, true);
+        dialogoAcercaDe.setVisible(true);
+//        dialogoAcercaDe.setSize(300, 300);
+//        dialogoAcercaDe.setLocation(800, 200);
+//        JLabel acercaDeLabel = new JLabel("AUTORES:\n Inmaculada Rueda \n Guillermo Pernas \n\n Fecha: 28/10/2022");
+//        JButton acercaDeButton = new JButton("Hola");
+//        dialogoAcercaDe.add(acercaDeLabel);
+//        dialogoAcercaDe.add(acercaDeButton);
+//        dialogoAcercaDe.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        //showMessageDialog(null, "AUTORES:\n Inmaculada Rueda \n Guillermo Pernas \n\n Fecha: 28/10/2022");
+        //pack();
     }//GEN-LAST:event_jMenuAcercaDeMouseClicked
 
     private void jMenuItemDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDetalleActionPerformed
