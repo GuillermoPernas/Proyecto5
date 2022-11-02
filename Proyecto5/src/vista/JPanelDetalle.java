@@ -192,7 +192,7 @@ public class JPanelDetalle extends javax.swing.JPanel {
         jTextFieldCodigo.setText(prod.getCodProd()+"");
         jTextFieldNombre.setText(prod.getNombre());
         jTextFieldPrecio.setText(prod.getPrecio()+"");
-        jDateChooserFecha.setDate(prod.getFecha());
+        jDateChooserFecha.setCalendar(prod.getFecha());
     }
 
     private void iniciaConsulta() {

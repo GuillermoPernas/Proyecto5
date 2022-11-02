@@ -6,6 +6,7 @@ package vista;
 
 import Controlador.ListaProductos;
 import controlador.LoginController;
+import controlador.Productos1a1;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -22,7 +23,7 @@ public class JPanelResumen extends javax.swing.JPanel {
     public JPanelResumen() {
         initComponents();
         rellenarDatosProveedor();
-        rellenarJlist();
+        rellenarJlistyCalcular();
 
     }
 
@@ -128,7 +129,7 @@ public class JPanelResumen extends javax.swing.JPanel {
 
     }
 
-    public void rellenarJlist() {
+    public void rellenarJlistyCalcular() {
         ArrayList<Producto> listaProductos = (ArrayList<Producto>) ListaProductos.getLista("select * from producto where cod_prov="
                 + LoginController.getAuxProv().getCodProv());
         float precioAux = 0;
@@ -147,6 +148,8 @@ public class JPanelResumen extends javax.swing.JPanel {
 
     private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
         txtPrecioMedio.setText(String.valueOf(precio));
+        Productos1a1.ejecutaUpdate("UPDATE proveedor SET precio_medio = " + precio 
+                                    + " where codigo = " + LoginController.getAuxProv().getCodProv());
     }//GEN-LAST:event_btCalcularActionPerformed
 
 

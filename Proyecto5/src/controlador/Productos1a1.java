@@ -1,5 +1,6 @@
 package controlador;
 
+import static Controlador.Herramienta.dateToGregorianCalendar;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,13 +26,15 @@ public class Productos1a1 {
     }
     
     public static void ejecutaUpdate(String consulta){
+        PreparedStatement pstment = null;
         try {
             int filas;
-            PreparedStatement pstment = ConnectionFactory.getConexion().prepareStatement(consulta);
+            pstment = ConnectionFactory.getConexion().prepareStatement(consulta);
                     //ConnectionFactory.getConexion().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                   //ResultSet.CONCUR_READ_ONLY);
             filas = pstment.executeUpdate();
             JOptionPane.showMessageDialog(null, "Se han actualizado " + filas + " fila(s)");
+            pstment.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -40,11 +43,12 @@ public class Productos1a1 {
     
     public static Producto devolverProducto() {
         Producto pv = null;
+        
         try {
             pv = new Producto(rset.getInt(1),
                     rset.getString(2),
                     rset.getFloat(3),
-                    rset.getDate(4),
+                    dateToGregorianCalendar(rset.getDate(4)),
                     rset.getInt(5));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha habido un problema al extraer el proveedor");

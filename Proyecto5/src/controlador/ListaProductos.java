@@ -7,6 +7,7 @@
 
 package Controlador;
 
+import static Controlador.Herramienta.dateToGregorianCalendar;
 import modelo.Producto;
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ListaProductos {
                 Producto auxProd = new Producto( rs.getInt(1),
                                                 rs.getString(2),
                                                 rs.getFloat(3),
-                                                rs.getDate(4),
+                                                dateToGregorianCalendar(rs.getDate(4)),
                                                 rs.getInt(5)
                 );
                 

@@ -1,15 +1,15 @@
 package modelo;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Producto {
     private int codProd;
     private String nombre;
     private float precio;
-    private Date fecha;
+    private GregorianCalendar fecha;
     private int codProv;
 
-    public Producto(int codProd, String nombre, float precio, Date fecha, int codProv) {
+    public Producto(int codProd, String nombre, float precio, GregorianCalendar fecha, int codProv) {
         this.codProd = codProd;
         this.nombre = nombre;
         this.precio = precio;
@@ -41,11 +41,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Date getFecha() {
+    public GregorianCalendar getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(GregorianCalendar fecha) {
         this.fecha = fecha;
     }
 
